@@ -1,3 +1,5 @@
+from fastapi.testclient import TestClient
+from app.main import app
 from app import schema
 # from .testdatabase import client,session
 import pytest
@@ -11,6 +13,7 @@ from app.config import settings
 # def test_root(client):
 #     res = client.get("/")
 #     print(res.status_code)
+#     print(res.json())
 #     print(res.json().get('message'))
 #     assert res.json().get('message') == 'Hello Ganesh'
 #     assert res.status_code == 200

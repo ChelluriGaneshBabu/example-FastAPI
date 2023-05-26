@@ -1,15 +1,6 @@
 from app.calculations import add,sub,mul,div,BankAccount,Insufficient_amount
 import pytest
 
-# @pytest.mark.parametrize("num1,num2,expected",[
-#     (3,2,5),
-#     (7,1,8),
-#     (12,3,15)
-# ])
-
-# def test_add2(num1,num2,expected):
-#     assert add(num1,num2) == expected
-
 
 # def test_add():
 #     print("testing successfully")
@@ -23,6 +14,15 @@ import pytest
 
 # def test_div():
 #     assert div(6,3) == 2
+
+# @pytest.mark.parametrize("num1,num2,expected",[
+#     (3,2,5),
+#     (7,1,8),
+#     (12,3,15)
+# ])
+
+# def test_add2(num1,num2,expected):
+#     assert add(num1,num2) == expected
 
 
 # def test_bank_set_amount():
