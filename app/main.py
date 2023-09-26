@@ -25,11 +25,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-# class Post(BaseModel):
-#     title:str
-#     content:str
-#     published: bool =True
-
 
 """
 # connection to the database
@@ -38,7 +33,7 @@ try:
     cursor=conn.cursor()
     print("DataBase connection was successful")
 except Exception as error:
-    print("Connecting to Database failed")
+    print("Connection to Database failed")
     print("Error:",error)
 
 # To retrive data
@@ -66,6 +61,12 @@ def create_post(payLoad: dict = Body(...)):
     return{"new_post": f"title: {payLoad['title']} ,content: {payLoad['content']}"}
     
 #To enter data in server with a schema
+
+# class Post(BaseModel):
+#     title:str
+#     content:str
+#     published: bool =True
+
 @app.post("/posts")
 def create_posts(post:Post):
     print(post.dict())
@@ -77,7 +78,7 @@ my_posts = [{"title":"title of post 1", "content": "content of post 1", "id": 1 
 
 #To get the latest post
 @app.get("/posts/latest")
-def get_latst_post():
+def get_latest_post():
     post = my_posts[len(my_posts)-1]
     return {"detail":post}
 

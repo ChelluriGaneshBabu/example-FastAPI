@@ -5,7 +5,7 @@ from fastapi.security import OAuth2PasswordBearer
 from . import schema,database,models
 from sqlalchemy.orm import Session
 from .config import settings
-import time
+
 # We cant get the token by calling the login function in route.
 # So to get the token we use a class to call the function of the route which accepts the route as arguments
 oauth2_scheme= OAuth2PasswordBearer(tokenUrl='login')
@@ -47,9 +47,9 @@ def verify_token(token:str,credentials_exception):
 # getting the user id by calling the verify token function
 def get_current_user(token:str = Depends(oauth2_scheme),db:Session=Depends(database.get_db)):
     credentials_exception=HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"could not validate credentials",headers={"WWW_Authenticate":"Bearer"})
-    token = verify_token(token,credentials_exception)
+    token_data = verify_token(token,credentials_exception)
     # check the payload id of token who logged in with the user id in database
-    user= db.query(models.User).filter(models.User.id==token.id).first()
+    user= db.query(models.User).filter(models.User.id==token_data.id).first()
     return user
 
 
